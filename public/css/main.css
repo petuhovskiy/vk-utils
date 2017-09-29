@@ -1,0 +1,74 @@
+* {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.info-stats {
+    background-color: #eeeeee;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    height: 80px;
+    width: 420px;
+    border: 1px solid #e2e2e2;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+    box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
+
+.count-stats {
+    font-size: 43px;
+    color: gray;
+    /* position: absolute; */
+    width: 100%;
+    height: 50px;
+}
+
+.text-stats {
+    color: gray;
+    font-size: 13px;
+    /* position: absolute; */
+    bottom: 12px;
+    width: 100%;
+    /* margin-bottom: 20px; */
+}
+
+.half-stats {
+    text-align: center;
+    /* width: 49%; */
+    /* min-width: 140px; */
+    height: 80px;
+    display: inline-block;
+    /* position: absolute; */
+    padding: 0px;
+    padding-top: 0;
+}
+
+.right-stats {
+    /* right: 0; */
+    /* float: right; */
+    width: 54%;
+}
+
+.left-stats {
+    /* left: 0; */
+    width: 45%;
+}
+
+.text-process {
+    font-size: 50px;
+}
+
+.error-process {
+    color: red;
+}
+
+.text-info {
+
+}
+
+.path-result {
+
+}

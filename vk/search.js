@@ -3,7 +3,9 @@ const _ = require('underscore')
 
 const getInfo = (id) => {
     return api.friends.get(id)
-        .then(x => x.response)
+        .then(x => {
+            return x.response;
+        })
         .then(x => {
             return {
                 id: id,
@@ -92,8 +94,10 @@ async function search(id1, id2) {
         it = map[it].y;
     }
 
+    const usersPath = (await api.users.get(way)).response;
+
     return {
-        list: way,
+        list: usersPath,
         comment: "Path length: " + way.length + " persons"
     }
 }

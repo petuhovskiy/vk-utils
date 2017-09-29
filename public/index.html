@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" type="image/png" href="favicon.ico"/>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vk friends</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+
+    <link rel="stylesheet" href="css/main.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+</head>
+<body>
+<div class="container">
+    <div class="page-header">
+        <h1>Vk Friends</h1>
+    </div>
+    <div class="arthur-content">
+        <div class="info-stats">
+            <div class="half-stats left-stats">
+                <div class="count-stats" id="nodes-cnt">?</div>
+                <div class="text-stats">accounts</div>
+            </div>
+            <div class="half-stats right-stats">
+                <div class="count-stats" id="con-cnt">?</div>
+                <div class="text-stats">friends</div>
+            </div>
+        </div>
+        <p class="lead">Mdaxex memasiki podkatili</p>
+        <div class="form-inline" id="friends-form">
+            <div class="form-group">
+                <label for="id1">Id 1</label>
+                <input type="text" class="form-control" id="id1" placeholder="petuhovskiy">
+            </div>
+            <div class="form-group">
+                <label for="id2">Id 2</label>
+                <input type="text" class="form-control" id="id2" placeholder="durov">
+            </div>
+            <button id="friends-btn" class="btn btn-primary">Find path</button>
+        </div>
+        <br>
+        <div class="path-result" id="result">
+        </div>
+        <br>
+        <div class="latest-div" id="latest">
+
+        </div>
+    </div>
+</div>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

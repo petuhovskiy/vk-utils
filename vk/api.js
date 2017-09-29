@@ -5,11 +5,8 @@ const parseJSON = (x) => JSON.parse(x);
 const httpsGet = (url) => {
     return new Promise((resolve, reject) => {
         https.get(url, res => {
-
             let data = '';
-
             res.setEncoding('utf8');
-
             res.on('data', d => { data += d });
             res.on('end', e => resolve(data));
         }).on('error', e => reject(e))
