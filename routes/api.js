@@ -15,7 +15,7 @@ router.get('/search', function(req, resp, next) {
     
     vkApi.users.get([id1, id2])
         .then(arr => {
-            return [arr.response[0].id, arr.response[1].id]
+            return [arr.response[0].id, arr.response[1].id];
         })
         .then(arr => {
             if (arr.length != 2) {

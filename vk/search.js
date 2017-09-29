@@ -1,11 +1,8 @@
 const api = require('./api')
-const _ = require('underscore')
 
 const getInfo = (id) => {
     return api.friends.get(id)
-        .then(x => {
-            return x.response;
-        })
+        .then(x => x.response)
         .then(x => {
             return {
                 id: id,
@@ -16,18 +13,20 @@ const getInfo = (id) => {
 }
 
 async function search(id1, id2) {
+    const map1 = {};
+    const map2 = {};
 
-    const map = {};
     let middle = null;
+    
     const queue1 = [];
     const queue2 = [];
-
+    
     queue1.push(id1);
     queue2.push(id2);
 
-    map[id1] = {x: '', y: null};
-    map[id2] = {x: null, y: ''};
-    
+    map1[id1] = -1;
+    map2[id2] = -1;
+
     mitm:
     while (queue1.length > 0 && queue2.length > 0) {
         const cur = (queue1.length < queue2.length) ? queue1 : queue2;
@@ -35,35 +34,29 @@ async function search(id1, id2) {
         let cnt = cur.length;
         while (cnt-- > 0) {
             const id = cur.shift();
-            let t = map[id];
-            if (t.x != null && t.y != null) {
+
+            if (map1[id] && map2[id]) {
                 middle = id;
                 break mitm;
             }
 
-            let leave = false;
-
             const info = await getInfo(id);
             for (let i = 0; i != info.friends.length; ++i) {
                 const toIndex = info.friends[i];
-
-                if (!map[toIndex]) {
-                    map[toIndex] = {x: null, y: null};
-                }
     
                 const to = map[toIndex];
     
-                if (t.x != null && to.x == null) {
-                    to.x = id;
+                if (map1[id] && !map1[toIndex]) {
+                    map1[toIndex] = id;
                     cur.push(toIndex);
                 }
     
-                if (t.y != null && to.y == null) {
-                    to.y = id;
+                if (map2[id] && !map2[toIndex]) {
+                    map2[toIndex] = id;
                     cur.push(toIndex);
                 }
-                
-                if (to.x != null && to.y != null) {
+
+                if (map1[toIndex] && map2[toIndex]) {
                     middle = toIndex;
                     break mitm;
                 }
@@ -71,7 +64,7 @@ async function search(id1, id2) {
         }
     }
 
-    if (middle == null) {
+    if (!middle) {
         return {
             list: [],
             comment: "Way doesn't exist"
@@ -80,18 +73,18 @@ async function search(id1, id2) {
 
     let reverse = [];
     let it = middle;
-    while (it != '') {
+    while (it != -1) {
         reverse.push(it);
-        it = map[it].x;
+        it = map1[it];
     }
 
     let way = reverse;
     way.reverse();
 
-    it = map[middle].y;
-    while (it != '') {
+    it = map2[middle];
+    while (it != -1) {
         way.push(it);
-        it = map[it].y;
+        it = map2[it];
     }
 
     const usersPath = (await api.users.get(way)).response;
