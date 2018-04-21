@@ -16,6 +16,8 @@ async function search(id1, id2) {
     const map1 = {};
     const map2 = {};
 
+    console.log("search path", id1, id2);
+
     let middle = null;
     
     const queue1 = [];
@@ -43,8 +45,6 @@ async function search(id1, id2) {
             const info = await getInfo(id);
             for (let i = 0; i != info.friends.length; ++i) {
                 const toIndex = info.friends[i];
-    
-                const to = map[toIndex];
     
                 if (map1[id] && !map1[toIndex]) {
                     map1[toIndex] = id;

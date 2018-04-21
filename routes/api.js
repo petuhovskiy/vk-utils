@@ -25,10 +25,12 @@ router.get('/search', function(req, resp, next) {
         })
         .then(res => resp.send(res))
         .catch(e => {
+            console.error(e);
+            const errMsg = e.toString() + '\n' + e.stack;
             resp.send({
                 list: [],
-                comment: 'error',
-                err: e
+                comment: 'error' + '\n' + errMsg,
+                err: errMsg
             })
         })
 });
