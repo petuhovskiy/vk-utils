@@ -6,8 +6,8 @@ const getInfo = (id) => {
         .then(x => {
             return {
                 id: id,
-                friends: x.items,
-                count: x.count
+                friends: (x != null ? x.items : []),
+                count: (x != null ? x.count : 0)
             }
         })
 }
