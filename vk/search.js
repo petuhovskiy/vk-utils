@@ -1,4 +1,5 @@
 const api = require('./api')
+const cachedApi = require('./cachedApi')
 
 const getInfo = (id) => {
     return api.friends.get(id)
@@ -13,6 +14,8 @@ const getInfo = (id) => {
 }
 
 async function search(id1, id2) {
+    console.log('search ' + id1 + ' ' + id2);
+
     const map1 = {};
     const map2 = {};
 
@@ -29,11 +32,13 @@ async function search(id1, id2) {
 
     mitm:
     while (queue1.length > 0 && queue2.length > 0) {
-        const cur = (queue1.length < queue2.length) ? queue1 : queue2;
+        const cur = (queue1.length <= queue2.length) ? queue1 : queue2;
 
         let cnt = cur.length;
         while (cnt-- > 0) {
             const id = cur.shift();
+
+            console.log('id ' + id);
 
             if (map1[id] && map2[id]) {
                 middle = id;
@@ -43,8 +48,6 @@ async function search(id1, id2) {
             const info = await getInfo(id);
             for (let i = 0; i != info.friends.length; ++i) {
                 const toIndex = info.friends[i];
-    
-                const to = map[toIndex];
     
                 if (map1[id] && !map1[toIndex]) {
                     map1[toIndex] = id;
@@ -70,6 +73,8 @@ async function search(id1, id2) {
             comment: "Way doesn't exist"
         }
     }
+
+    console.log('middle ' + middle);
 
     let reverse = [];
     let it = middle;
